@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.opthema.hcm.grpc";
+option java_outer_classname = "EventProto";
+
+import "user.proto";
+
+service EventService {
+  rpc CreateEvent (EventRequest) returns (EventResponse);
+}
+
+message EventRequest {
+  string name = 1;
+  string date = 2;
+  int32 userOrGroupType = 3;
+  string userOrGroupsFilterValue = 4;
+  repeated int64 appUserIds = 5;
+}
+
+message EventResponse {
+  string message = 1;
+  repeated com.opthema.hcm.grpc.user.UserRequest users = 2;
+}
